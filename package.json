@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abbyho2022/ironman#readme",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2"
   }
 }
