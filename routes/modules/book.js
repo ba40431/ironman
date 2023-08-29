@@ -10,7 +10,7 @@ router.use((req, res, next) => {
 // define the book page route by get method
 router.get('/', (req, res) => {
   // res.send('Get a book')
-  res.render('book')
+  res.render('page')
 })
 // define the book route by post method
 router.post('/', (req, res) => {
