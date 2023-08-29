@@ -3,10 +3,12 @@ const router = require('./routes')
 const app = express()
 const port = 3000
 
+app.set('views',__dirname + '/public/views') // 樣版引擎所在的資料夾
+app.set('view engine', 'ejs') // 樣版的屬性
+
 app.use(router)
 app.use(express.static('public'))
-app.set('views',__dirname + '/public/views')
-app.set('view engine', 'ejs')
+
 
 
 app.listen(port, () => {
