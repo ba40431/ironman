@@ -10,10 +10,23 @@ const connection = mysql.createConnection({
 	password: ''
 })
 
-// simple query
+connection.query(
+  'INSERT INTO `booktest` (`bookName`) VALUES ("testBook")',
+  (err, results, fields) => {
+    console.log(results) 
+  }
+)
+
+connection.query(
+  'UPDATE `booktest` SET `bookName` = "testBook" WHERE id = 1',
+  (err, results, fields) => {
+    console.log(results)
+  }
+)
+
 connection.query(
   'SELECT * FROM `booktest`',
   (err, results, fields) => {
-    console.log(results) // results contains rows returned by server
+    console.log(results)
   }
 )
