@@ -1,55 +1,24 @@
+// 引入 mysql2/promise 模組
 const mysql = require('mysql2/promise')
 
-// class Mysql {
-//   constructor() {
-//   }
-
-//   async createConnection() {
-//   return await mysql.createConnection({
-//     host: 'localhost',
-//     port: 3306,
-//     user: 'root',
-//     database: 'book',
-//     password: ''
-//   })
-//   }
-// }
-
-// module.exports = Mysql
-
 async function mysqlConnection() {
-  // get the client
-  // const mysql = require('mysql2/promise')
+  try {
+    // 建立與數據庫的連接
+    const connection = await mysql.createConnection({
+      host: 'localhost',
+      port: 3306,
+      user: 'root',
+      database: 'book',
+      password: ''
+    })
 
-  // create the connection to database
-  const connection = await mysql.query({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    database: 'book',
-    password: ''
-  })
+    return connection; // 返回連接對象
 
-  return connection
+  } catch (error) {
+    console.error('連接數據庫時出現錯誤：', error)
+  }
 }
 
 module.exports = {
   mysqlConnection
 }
-
-//   // query database
-//   const [rows1, fields1] = await connection.execute('INSERT INTO `booktest` (`bookName`) VALUES ("testBook")')
-//   console.log(rows1)
-
-//    // query database
-//   const [rows2, fields2] = await connection.execute('UPDATE `booktest` SET `bookName` = "testBook1" WHERE id = 1')
-//   console.log(rows2)
-
-//     // query database
-//   const [rows3, fields3] = await connection.execute('SELECT * FROM `booktest`')
-//   console.log(rows3)
-
-//   return 
-// }
-
-// mysqlConnection()
