@@ -10,16 +10,18 @@ router.use((req, res, next) => {
 // define the book page route by get method
 router.get('/', (req, res) => {
   // res.send('Get a book')
-  res.render('page')
+  res.render('page',{'text': 'Get a book'})
 })
 // define the book route by post method
 router.post('/', (req, res) => {
-  res.send('Post a book')
+  // res.send('Post a book')
+  res.render('page',{'text': 'Post a book'})
 })
 
 // define the book route by get method
 router.delete('/', (req, res) => {
-  res.send('Delete the book')
+  // res.send('Delete the book')
+  res.render('page',{'text': 'Delete the book'})
 })
 
 module.exports = router
