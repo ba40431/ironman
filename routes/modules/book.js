@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Mysql = require('../../config/mysqlConnection')
-const mysql = new Mysql().createConnection()
+// const Mysql = require('../../config/mysqlConnection')
+// const mysql = new Mysql().createConnection()
+const mysqlConnection = require('../../config/mysqlConnection')
 
 router.use((req, res, next) => {
   console.log('requestTime: ', new Date(new Date().getTime() + 8 * 60 * 60 * 1000)) //取得現在時間（台灣時間）
@@ -12,6 +13,8 @@ router.use((req, res, next) => {
 // define the book page route by get method
 router.get('/', async (req, res) => {
 
+  const mysql = await createConnection()
+
   await mysql.execute('SELECT * FROM `booktest`')
 
   // res.send('Get a book')
@@ -19,6 +22,8 @@ router.get('/', async (req, res) => {
 })
 // define the book route by post method
 router.post('/', async (req, res) => {
+
+  const mysql = await createConnection()
 
   await mysql.execute('UPDATE `booktest` SET `bookName` = "testBook1" WHERE id = 1')
 
@@ -28,6 +33,8 @@ router.post('/', async (req, res) => {
 
 // define the book route by delete method
 router.delete('/', async (req, res) => {
+
+  const mysql = await createConnection()
 
   await mysql.execute('DELETE FROM `booktest`  WHERE id = 1')
 
