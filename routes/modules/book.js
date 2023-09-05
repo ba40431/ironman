@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
   try {
     // 建立與數據庫的連接
     const connection = await mysqlConnection()
-    await connection.query('UPDATE `booktest` SET `bookName` = "testBook1" WHERE id = 1')
+    await connection.query('INSERT INTO `booktest` (`bookName`) VALUES ("testBook-1")')
 
     // 關閉連接
     connection.end()
