@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const sequelize = require('../../models/index')
-const booktest  = require('../../models/mysql/booktest')
+const booktest  = require('../../models/mysql/bookTest')
 
 
 
