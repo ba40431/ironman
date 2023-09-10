@@ -29,12 +29,13 @@ router.get('/', async (req, res) => {
 
 // define the book route by post method
 router.post('/', async (req, res) => {
+  console.log(req.body)
   const bookName = req.body.bookName // 設定一個要新增的書名
 
   try {
     // 建立與數據庫的連接
     const connection = await mysqlConnection()
-    await connection.query(`INSERT INTO booktest (bookName) VALUES (${bookName})`)
+    await connection.query(`INSERT INTO booktest (bookName) VALUES ('${bookName}')`)
 
     // 關閉連接
     connection.end()
@@ -47,9 +48,9 @@ router.post('/', async (req, res) => {
 })
 
 // define the book route by delete method
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const id = req.params.id
-
+  
   try {
     // 建立與數據庫的連接
     const connection = await mysqlConnection()
