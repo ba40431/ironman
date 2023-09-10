@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const sequelize = require('../../models/index')
-const booktest  = require('../../models/mysql/bookTest')
+const { sequelize, booktest } = require('../../models/index')
 
 
 
@@ -14,18 +13,13 @@ router.use((req, res, next) => {
 // define the book page route by get method
 router.get('/', async (req, res) => {
 
-  sequelize.sync({ force: true }).then(() => {
-    booktest.findAll().then(booktest => {
-      console.log("All booktest:", JSON.stringify(booktest, null, 4));
-    })
-  })
-
-  // try {
-  //   // 建立與數據庫的連接
-
-  // } catch (error) {
-  //   console.error('連接數據庫時出現錯誤：', error)
-  // }
+  try {
+    await sequelize.sync();
+    const books = await booktest.findAll();
+    console.log("All books:", JSON.stringify(books, null, 4));
+  } catch (error) {
+      console.error("An error occurred:", error);
+  }
 
   // res.send('Get a book')
   res.render('page',{'text': 'Get a book'})
@@ -36,9 +30,11 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
   try {
-
+    await sequelize.sync();
+    const books = await booktest.findAll();
+    console.log("All books:", JSON.stringify(books, null, 4));
   } catch (error) {
-    console.error('連接數據庫時出現錯誤：', error)
+      console.error("An error occurred:", error);
   }
 
   // res.send('Post a book')
@@ -49,9 +45,11 @@ router.post('/', async (req, res) => {
 router.delete('/', async (req, res) => {
 
   try {
-
+    await sequelize.sync();
+    const books = await booktest.findAll();
+    console.log("All books:", JSON.stringify(books, null, 4));
   } catch (error) {
-    console.error('連接數據庫時出現錯誤：', error)
+      console.error("An error occurred:", error);
   }
 
   // res.send('Delete the book')
