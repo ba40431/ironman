@@ -18,11 +18,12 @@ const booktest = sequelize.define('booktest', {
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true,
+			defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {

@@ -14,46 +14,49 @@ router.use((req, res, next) => {
 router.get('/', async (req, res) => {
 
   try {
-    await sequelize.sync();
-    const books = await booktest.findAll();
-    console.log("All books:", JSON.stringify(books, null, 4));
+    const books = await booktest.findAll({raw: true})
+    console.log(books)
+
   } catch (error) {
-      console.error("An error occurred:", error);
+      console.error("An error occurred:", error)
   }
 
-  // res.send('Get a book')
   res.render('page',{'text': 'Get a book'})
 })
 
 
 // define the book route by post method
 router.post('/', async (req, res) => {
+  const bookName = req.body.bookName // 設定一個要新增的書名
 
   try {
-    await sequelize.sync();
-    const books = await booktest.findAll();
-    console.log("All books:", JSON.stringify(books, null, 4));
+    const books = await booktest.create({ bookName: bookName }, { raw: true })
+
   } catch (error) {
-      console.error("An error occurred:", error);
+      console.error("An error occurred:", error)
   }
 
   // res.send('Post a book')
-  res.render('page',{'text': 'Post a book'})
+  res.render('page',{'text': `add a new book: ${bookName}`})
 })
 
 // define the book route by delete method
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
 
   try {
-    await sequelize.sync();
-    const books = await booktest.findAll();
-    console.log("All books:", JSON.stringify(books, null, 4));
+    const books = await booktest.destroy({
+      where: {
+        id : id
+      }
+  })
+
   } catch (error) {
-      console.error("An error occurred:", error);
+      console.error("An error occurred:", error)
   }
 
   // res.send('Delete the book')
-  res.render('page',{'text': 'Delete the book'})
+  res.render('page',{'text': `Delete the book number ${id}`})
 })
 
 module.exports = router
