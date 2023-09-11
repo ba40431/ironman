@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { sequelize, booktest } = require('../../models/index')
+const { booktest } = require('../../models/index')
 
 
 
