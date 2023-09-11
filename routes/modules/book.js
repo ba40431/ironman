@@ -29,7 +29,6 @@ router.get('/', async (req, res) => {
 
 // define the book route by post method
 router.post('/', async (req, res) => {
-  console.log(req.body)
   const bookName = req.body.bookName // 設定一個要新增的書名
 
   try {
