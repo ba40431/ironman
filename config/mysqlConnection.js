@@ -3,13 +3,14 @@ const mysql = require('mysql2/promise')
 
 async function mysqlConnection() {
   try {
-    // 建立與數據庫的連接
+    // 建立與數據庫    
     const connection = await mysql.createConnection({
-      host: 'localhost',
+      host: process.env.MYSQL_HOSTNAME,
       port: 3306,
-      user: 'root',
+      user: process.env.MYSQL_USERNAME,
       database: 'book',
-      password: ''
+      password: process.env.MYSQL_PASSWORD的連接
+
     })
 
     return connection; // 返回連接對象
