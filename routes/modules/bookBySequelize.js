@@ -35,8 +35,6 @@ router.post('/', [
   check('bookName')
     .exists({ checkFalsy: true })
     .withMessage('缺少 bookName ')
-    .isNumeric()
-    .withMessage('bookName 需要為文字')
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
