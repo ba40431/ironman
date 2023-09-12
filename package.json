@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=local nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/abbyho2022/ironman#readme",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "cookie-parser": "^1.4.6",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "lodash": "^4.17.21",
     "mysql2": "^3.6.1",
     "nodemon": "^3.0.1",
     "sequelize": "^6.33.0",
