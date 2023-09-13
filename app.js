@@ -13,8 +13,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(session({
   secret: 'your-secret-key', // 建議將此替換為實際的安全密鑰
-  resave: false,
-  saveUninitialized: true,
+  resave: false, // 是否每次都重新保存 session，預設為 true
+  saveUninitialized: false, // 是否每次都重新產生 session，預設為 true
   cookie: { secure: false } // 建議在生產環境中將其設置為 true，以使用HTTPS
 }))
 app.use(router)
