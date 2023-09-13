@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/views/css/index.css"> <!-- 引入您的 CSS 文件 -->
 </head>
 <body>
-  <!-- 登入表單 -->
-    <h2>Login</h2>
-    <form method="put" action="/user">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
-
-  <!-- 註冊表單 -->
-    <form method="post" action="/user">
-      <h2>Signup</h2>
-      <label for="newUsername">Username:</label>
-      <input type="text" id="newUsername" name="newUsername" required>
+    <!-- Header -->
+    <%- include('header') %>
+    <!-- Header -->
+  <main>
+    <form action="/login" method="post"> <!-- 登入表單 -->
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
       <br>
-      <label for="newPassword">Password:</label>
-      <input type="password" id="newPassword" name="newPassword" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
       <br>
-      <button type="submit">Signup</button>
+      <button type="submit">Login</button>
     </form>
-
+  </main>
+    <!-- Footer -->
+    <%- include('footer') %>
+    <!-- Footer -->
 </body>
 </html>
+
