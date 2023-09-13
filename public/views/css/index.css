@@ -1,0 +1,29 @@
+/* 重置一些默認樣式 */
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 基本頁面樣式 */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1; /* 主要內容區域填充剩餘空間 */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+

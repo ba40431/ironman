@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
 
   try {
     const books = await booktest.findAll({raw: true})
-    console.log(books)
 
   } catch (error) {
       console.error("An error occurred:", error)
@@ -36,12 +35,12 @@ router.post('/', [
     .exists({ checkFalsy: true })
     .withMessage('缺少 bookName ')
 ], async (req, res) => {
-  const errors = validationResult(req);
+  const errors = validationResult(req)
   if (!errors.isEmpty()) {
     // Handle validation errors
-    const errorMessages = errors.array().map(error => error.msg);
-    console.log(errorMessages);
-    return res.status(400).json({ errors: errorMessages });
+    const errorMessages = errors.array().map(error => error.msg)
+    console.log(errorMessages)
+    return res.status(400).json({ errors: errorMessages })
   }
   const bookName = req.body.bookName // 設定一個要新增的書名
 
