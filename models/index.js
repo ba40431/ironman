@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('ironman', process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
+const sequelize = new Sequelize('tmp', process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
     host: process.env.MYSQL_HOSTNAME,
     dialect: 'mysql'
 })
@@ -13,5 +13,7 @@ const user = require('./mysql/user')(sequelize, Sequelize)
 
 
 module.exports = {
-  booktest
+  booktest,
+  book,
+  user
 }
