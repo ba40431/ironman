@@ -1,10 +1,14 @@
 const bcrypt = require('bcrypt')
 
-function hash(password) {
-    const saltRounds = 10
-    bcrypt.hash(password, saltRounds, async (err, hash) => {
-        return hash
-    })
+async function hash(password) {
+	const saltRounds = 10
+	try {
+			const hashedPassword = await bcrypt.hash(password, saltRounds)
+
+			return hashedPassword
+	} catch (err) {
+			throw new Error('Password hashing failed')
+	}
 }
 
 function compare(hashedPassword, password) {
@@ -14,4 +18,4 @@ function compare(hashedPassword, password) {
 module.exports = {
     hash,
     compare
-  }
+}

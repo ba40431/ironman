@@ -18,13 +18,15 @@ router.post('/', async(req, res) => {
     ,raw: true})
 
   }catch(error){
-    console.error("An error occurred:", error)
+    return console.error("An error occurred:", error)
   }
 
-  if(userData) res.render('signIn', { 'error': 'This account is already registered.' }) 
-  await user.create({ username: username, password, password }, { raw: true })
+  if(userData) return res.render('signIn', { 'error': 'This account is already registered.' }) 
+  const hashedPassword = await passwordUtils.hash(password)
 
-  res.render('signIn', { 'error': 'Registration successful. Please go to the login page to log in again.' }) 
+  await user.create({ username: username, password: hashedPassword }, { raw: true })
+
+  return res.render('signIn', { 'error': 'Registration successful. Please go to the login page to log in again.' }) 
 })
 
 module.exports = router

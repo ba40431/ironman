@@ -8,7 +8,7 @@ async function mysqlConnection() {
       host: process.env.MYSQL_HOSTNAME,
       port: 3306,
       user: process.env.MYSQL_USERNAME,
-      database: '',
+      database: 'ironman',
       password: process.env.MYSQL_PASSWORD的
 
     })

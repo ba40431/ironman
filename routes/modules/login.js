@@ -19,24 +19,25 @@ router.post('/', async (req, res) => {
       }
     ,raw: true})
   }catch(error){
-    console.error("An error occurred:", error)
+    return console.error("An error occurred:", error)
   }
 
   if(!userData){
-    res.render('login', { 'error': 'Account not found' }) 
+    return res.render('login', { 'error': 'Account not found' }) 
   } 
   if (username !== userData.username && password !== userData.password){
-    res.render('login', { 'error': 'Invalid username or password.' }) 
+    return res.render('login', { 'error': 'Invalid username or password.' }) 
   }
   // 在這裡您可以實現用戶驗證邏輯，例如檢查用戶名和密碼是否有效
-  if (username === userData.username && password === userData.password) {
+  if (username === userData.username && passwordUtils.compare(userData.password, password)) {
     // 登入成功
     req.session.id = userData.id
     req.session.user = userData.username // 在會話中存儲用戶信息
+
     res.redirect('/') // 登入成功後重定向到主頁或其他頁面
   } else {
     // 登入失敗
-    res.render('login', { 'error': 'Invalid username or password' }) // 顯示錯誤信息
+    return res.render('login', { 'error': 'Invalid username or password' }) // 顯示錯誤信息
   }
 })
 
