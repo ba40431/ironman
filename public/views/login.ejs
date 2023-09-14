@@ -21,6 +21,11 @@
       <br>
       <button type="submit">Login</button>
       <div class="login-text">Don't have an account yet?<a href="./signIn">Click here to register.</a></div>
+      <div>
+        <% if (error) { %>
+          <p><%= error %></p>
+        <% } %>
+      </div>      
     </form>
   </main>
     <!-- Footer -->

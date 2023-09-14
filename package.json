@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abbyho2022/ironman#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",

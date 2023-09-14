@@ -11,7 +11,7 @@
     <%- include('header') %>
     <!-- Header -->
   <main>
-    <!-- 登入表單 -->
+    <!-- 註冊表單 -->
     <form action="/signIn" method="post"> 
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
@@ -21,6 +21,11 @@
       <br>
       <button type="submit">Login</button>
       <div class="login-text">Already have an account?<a href="/login">Click here to log in.</a></div>
+      <div>
+        <% if (error) { %>
+          <p><%= error %></p>
+        <% } %>
+      </div> 
     </form>
   </main>
     <!-- Footer -->
