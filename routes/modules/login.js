@@ -25,11 +25,12 @@ router.post('/', async (req, res) => {
   if(!userData){
     return res.render('login', { 'error': 'Account not found' }) 
   } 
-  if (username !== userData.username && password !== userData.password){
+
+  if (username !== userData.username || !await passwordUtils.compare(password, userData.password)){
     return res.render('login', { 'error': 'Invalid username or password.' }) 
   }
   // 在這裡您可以實現用戶驗證邏輯，例如檢查用戶名和密碼是否有效
-  if (username === userData.username && passwordUtils.compare(userData.password, password)) {
+  if (username === userData.username && await passwordUtils.compare(password, userData.password)) {
     // 登入成功
     req.session.id = userData.id
     req.session.user = userData.username // 在會話中存儲用戶信息
