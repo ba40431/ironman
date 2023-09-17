@@ -16,19 +16,19 @@
       <!-- 新增書籍的表單 -->
       <form action="/book" method="post">
         <label for="title">Book Name:</label>
-        <input type="text" id="title" name="title" placeholder="Book Name" required>
+        <input type="text" id="bookName" name="bookName" placeholder="Book Name" required>
         <button type="submit">Add Book</button>
         <br>
       </form>
 
 
       <!-- 刪除書籍的表單 -->
-      <form action="/book" method="delete">
+      <form action="/book?_method=DELETE" method="post">
         <label for="bookToDelete">Delete Book's Id:</label>
-        <select id="bookToDelete" name="bookIndex">
+        <select id="bookToDelete" name="id">
           <% if (books && books.length > 0) { %>
             <% books.forEach(function(book) { %>
-              <li><%= book.title %></li>
+              <option value="<%= book.id %>"><%= book.id %></option>
             <% }); %>
           <% } %>
         </select>
@@ -39,7 +39,7 @@
       <ul>
         <% if (books && books.length > 0) { %>
           <% books.forEach(function(book) { %>
-            <li><%= book.title %> by <%= book.author %></li>
+            <li><%= book.id %>.<%= book.bookName %></li>
           <% }); %>
         <% } else { %>
           <li>No books available</li>

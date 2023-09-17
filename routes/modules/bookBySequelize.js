@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { booktest } = require('../../models/index')
+const { book,user } = require('../../models/index')
+
 const { check, validationResult } = require('express-validator') // 載入套件
 // const bookRules = require('../../validations/bookRule')
 const _ = require('lodash')
@@ -19,13 +20,15 @@ router.use((req, res, next) => {
 router.get('/', async (req, res) => {
 
   try {
-    const books = await booktest.findAll({raw: true})
+    const books = await book.findAll({where:{
+      merberId: req.session.userId
+    },raw: true})
 
+    res.render('index',{'username': req.session.user, books: books})
   } catch (error) {
-      console.error("An error occurred:", error)
+    res.render('index',{'username': req.session.user, books: error})
   }
 
-  res.render('page',{'text': 'Get a book'})
 })
 
 
@@ -39,39 +42,41 @@ router.post('/', [
   if (!errors.isEmpty()) {
     // Handle validation errors
     const errorMessages = errors.array().map(error => error.msg)
-    console.log(errorMessages)
+
     return res.status(400).json({ errors: errorMessages })
   }
   const bookName = req.body.bookName // 設定一個要新增的書名
 
-  try {
-    const books = await booktest.create({ bookName: bookName }, { raw: true })
 
+  try {
+    const books = await book.create({ bookName: bookName, memberId: req.session.userId }, { raw: true })
+
+    res.redirect('/')
   } catch (error) {
       console.error("An error occurred:", error)
   }
 
-  // res.send('Post a book')
-  res.render('page',{'text': `add a new book: ${bookName}`})
+
 })
 
 // define the book route by delete method
-router.delete('/:id', async (req, res) => {
-  const id = req.params.id
+router.delete('/', async (req, res) => {
+  const id = req.body.id
+  
 
   try {
-    const books = await booktest.destroy({
+    const books = await book.destroy({
       where: {
         id : id
       }
   })
-
+  res.redirect('/')
   } catch (error) {
       console.error("An error occurred:", error)
   }
 
   // res.send('Delete the book')
-  res.render('page',{'text': `Delete the book number ${id}`})
+  
 })
 
 module.exports = router

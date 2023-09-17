@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: ""
     },
-    merberId: {
+    memberId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: "merberId"
+      unique: "memberId"
     }
   }, {
     sequelize,
@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       {
         name: "merberId",
-        unique: true,
+        unique: false,
         using: "BTREE",
         fields: [
           { name: "merberId" },
