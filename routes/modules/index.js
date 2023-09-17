@@ -3,7 +3,7 @@ const router = express.Router()
 const requireLogin = require('../../middleware/auth')
 
 router.get('/', requireLogin, (req, res) => {
-  res.render('index', {'username': req.session.user})
+  res.render('index', {'username': req.session.user, books: null})
 })
 
 module.exports = router

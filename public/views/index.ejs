@@ -11,7 +11,41 @@
     <!-- Header -->
   <body>
     <main>
-      <p><%= username %>'s book list  </p>
+      <h2><%= username %>'s book list</h2>
+    
+      <!-- 新增書籍的表單 -->
+      <form action="/book" method="post">
+        <label for="title">Book Name:</label>
+        <input type="text" id="title" name="title" placeholder="Book Name" required>
+        <button type="submit">Add Book</button>
+        <br>
+      </form>
+
+
+      <!-- 刪除書籍的表單 -->
+      <form action="/book" method="delete">
+        <label for="bookToDelete">Delete Book's Id:</label>
+        <select id="bookToDelete" name="bookIndex">
+          <% if (books && books.length > 0) { %>
+            <% books.forEach(function(book) { %>
+              <li><%= book.title %></li>
+            <% }); %>
+          <% } %>
+        </select>
+        <button type="submit">Delete Book</button>
+      </form>
+
+
+      <ul>
+        <% if (books && books.length > 0) { %>
+          <% books.forEach(function(book) { %>
+            <li><%= book.title %> by <%= book.author %></li>
+          <% }); %>
+        <% } else { %>
+          <li>No books available</li>
+        <% } %>
+      </ul>
+
     </main>
     <!-- Footer -->
     <%- include('footer') %>

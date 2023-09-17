@@ -17,7 +17,6 @@ main {
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 main p {
@@ -25,5 +24,39 @@ main p {
   line-height: 1.6;
   margin-bottom: 20px;
 }
+
+/* 新的输入字段样式 */
+form input[type="text"] {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px; /* 根据需要设置宽度 */
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* 新的按钮样式 */
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 新的下拉菜单样式 */
+form select {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 275px; /* 根据需要设置宽度 */
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
 
 
