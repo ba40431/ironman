@@ -1,4 +1,4 @@
-const BookRepository = require('../repositories/BookRepository')
+const BookRepository = require('../repositories/bookRepository')
 const bookRepository = new BookRepository()
 
 class BookService {
