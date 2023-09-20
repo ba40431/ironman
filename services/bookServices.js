@@ -5,24 +5,40 @@ class BookService {
   constructor() {
   }
 
-  async createBook() {
-
-    return 
+  async createBook(bookName, userId) {
+    try {
+      return  await bookRepository.createBook(bookName, userId)
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
-  async selectBook() {
-
-    return 
+  async selectBook(userId) {
+    try {
+      return  await bookRepository.selectBook(userId)
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
   async updateBook() {
-
-    return 
+    try {
+      return  await bookRepository.updateBook()
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
-  async deleteBook() {
-
-    return 
+  async deleteBook(id) {
+    try {
+      return  await bookRepository.deleteBook(id)
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
 }

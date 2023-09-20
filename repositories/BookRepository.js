@@ -1,28 +1,45 @@
-const Mysql = require('../config/mysqlConnection')
-const mysql = new Mysql().createConnection()
+// const Mysql = require('../config/mysqlConnection')
+// const mysql = new Mysql().createConnection()
+const { book,user } = require('../models/index')
 
 class BookRepository {
   constructor() {
   }
 
-  async createBook() {
-    const [rows, fields] = await mysql.execute('INSERT INTO `booktest` (`bookName`) VALUES ("testBook")')
-    return 
+  async createBook(bookName, userId) {
+    try {
+      return  await book.create({ bookName: bookName, memberId: userId }, { raw: true })
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
-  async selectBook() {
-    const [rows, fields] = await mysql.execute('SELECT * FROM `booktest`')
-    return 
+  async selectBook(userId) {
+    try {
+      return  await book.findAll({where:{memberId: userId},raw: true})
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
   async updateBook() {
-    const [rows, fields] = await mysql.execute('UPDATE `booktest` SET `bookName` = "testBook1" WHERE id = 1')
-    return 
+    try {
+      return  
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
-  async deleteBook() {
-    const [rows, fields] = await mysql.execute('DELETE FROM `booktest`  WHERE id = 1')
-    return 
+  async deleteBook(id) {
+    try {
+      return  await book.destroy({where: {id : id}})
+      
+    }catch(error){
+      throw new Error(error)
+    }
   }
 
 }

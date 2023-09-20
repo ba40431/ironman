@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const { book,user } = require('../../models/index')
-
 const { check, validationResult } = require('express-validator') // 載入套件
 // const bookRules = require('../../validations/bookRule')
+// const { book,user } = require('../../models/index')
+const BookService = require('../../services/bookServices')
+const bookService = new BookService()
+
 const _ = require('lodash')
 const dayjs = require('dayjs')
 
@@ -20,9 +22,10 @@ router.use((req, res, next) => {
 router.get('/', async (req, res) => {
 
   try {
-    const books = await book.findAll({where:{
-      merberId: req.session.userId
-    },raw: true})
+    const books = await bookService.selectBook(req.session.userId)
+    // const books = await book.findAll({where:{
+    //   merberId: req.session.userId
+    // },raw: true})
 
     res.render('index',{'username': req.session.user, books: books})
   } catch (error) {
@@ -49,7 +52,8 @@ router.post('/', [
 
 
   try {
-    const books = await book.create({ bookName: bookName, memberId: req.session.userId }, { raw: true })
+    await bookService.createBook(bookName, req.session.userId)
+    // const books = await book.create({ bookName: bookName, memberId: req.session.userId }, { raw: true })
 
     res.redirect('/')
   } catch (error) {
@@ -65,11 +69,13 @@ router.delete('/', async (req, res) => {
   
 
   try {
-    const books = await book.destroy({
-      where: {
-        id : id
-      }
-  })
+    await bookService.deleteBook(id)
+  //   const books = await book.destroy({
+  //     where: {
+  //       id : id
+  //     }
+  // })
+
   res.redirect('/')
   } catch (error) {
       console.error("An error occurred:", error)
