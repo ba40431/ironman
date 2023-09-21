@@ -7,7 +7,8 @@ const app = express()
 const port = 3000
 const methodOverride = require('method-override')
 
-app.set('views',__dirname + '/public/views') // 樣版引擎所在的資料夾
+app.set('views',__dirname + '/views') // 樣版引擎所在的資料夾
+app.set(__dirname + '/public') 
 app.set('view engine', 'ejs') // 樣版的屬性
 
 
