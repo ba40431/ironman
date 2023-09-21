@@ -5,15 +5,13 @@ const sequelize = new Sequelize('ironman', process.env.MYSQL_USERNAME, process.e
     dialect: 'mysql'
 })
 
-// 引入 booktest 模型
-const booktest = require('./mysql/booktest')(sequelize, Sequelize)
+// 引入資料模型
 const book = require('./mysql/book')(sequelize, Sequelize)
 const user = require('./mysql/user')(sequelize, Sequelize)
 
 
 
 module.exports = {
-  booktest,
   book,
   user
 }
