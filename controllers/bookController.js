@@ -21,7 +21,7 @@ class BookController {
 
       return res.redirect('/')
     }catch(error){
-      throw new Error(error)
+      return res.status(400).json({ errors: error })
     }
   }
 
@@ -31,7 +31,7 @@ class BookController {
 
       return res.render('index',{'username': req.session.user, books: books})
     }catch(error){
-      throw new Error(error)
+      return res.status(400).json({ errors: error })
     }
   }
 
@@ -40,7 +40,7 @@ class BookController {
       return  await bookService.updateBook()
       
     }catch(error){
-      throw new Error(error)
+      return res.status(400).json({ errors: error })
     }
   }
 
@@ -51,7 +51,7 @@ class BookController {
 
       return  res.redirect('/')
     }catch(error){
-      throw new Error(error)
+      return res.status(400).json({ errors: error })
     }
   }
 

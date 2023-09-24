@@ -1,12 +1,9 @@
 require('dotenv').config({ path: './config/env/local.env' })
 
 const chai = require('chai')
-const chaiHttp = require('chai-http')
-const { check, validationResult } = require('express-validator') 
 const BookController = require('../controllers/bookController')
 const bookController = new BookController()
 
-chai.use(chaiHttp);
 const expect = chai.expect
 
 describe('Book Controller', () => {
