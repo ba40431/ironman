@@ -20,7 +20,8 @@ async function mysqlConnection() {
       port: 3306,
       user: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
-      database: 'book',
+      database: 'book'
+
     })
 
     return pool.getConnection() // 返回連接對象
