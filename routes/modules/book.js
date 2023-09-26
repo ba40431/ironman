@@ -14,10 +14,10 @@ router.get('/', async (req, res) => {
   try {
     // 建立與數據庫的連接
     const connection  = await mysqlConnection()
-	  await connection.query('SELECT * FROM `booktest`')
+	  const res = await connection.query('SELECT * FROM `booktest`')
 
     // 關閉連接
-    connection.end()
+    connection.release()
   } catch (error) {
     console.error('連接數據庫時出現錯誤：', error)
   }
